@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'package:flutter_app/services/routeServices.dart';
+import 'package:flutter_app/services/userServices.dart';
 void main() {
-  runApp(const MyApp());
+   runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserServices()),
+        ChangeNotifierProvider(create: (_) => RouteServices())
+      ],
+      child: const MyApp(),
+    ),
+  );
+
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'MobilEA',
       theme: ThemeData(
         // This is the theme of your application.
         //
