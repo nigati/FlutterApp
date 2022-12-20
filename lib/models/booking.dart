@@ -1,7 +1,5 @@
 
 import 'dart:convert';
-import 'dart:html';
-
 import 'package:flutter_app/models/route.dart';
 import 'package:flutter_app/models/user.dart';
 

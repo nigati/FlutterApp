@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:html';
+
 
 import 'package:flutter_app/models/user.dart';
 
@@ -26,7 +26,7 @@ class Vehicle {
   String brand;
   int year;
   User owner;
-  NumberInputElement seats;
+  int seats;
   String licencePlate;
   //ObjectElement insurance;
 

@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_app/router/custom_router.dart';
+import 'package:flutter_app/views/first_page.dart';
+import 'package:flutter_app/views/login_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_app/services/routeServices.dart';
 import 'package:flutter_app/services/userServices.dart';
+import 'package:flutter_app/l10n/l10n.dart';
+import 'package:flutter_app/router/custom_router.dart';
+import 'package:flutter_app/router/route_constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 void main() {
    runApp(
     MultiProvider(
@@ -15,30 +24,42 @@ void main() {
 
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(newLocale);
+  }
+}
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+
+  setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
 
   @override
-  Widget build(BuildContext context) {
+    Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MobilEA',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      onGenerateRoute: CustomRouter.generatedRoute,
+      initialRoute: loginRoute,
+      locale: _locale,
+      debugShowCheckedModeBanner: false,
     );
   }
-}
+  }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
