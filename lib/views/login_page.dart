@@ -1,8 +1,7 @@
-import 'dart:html';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/language_constants.dart';
 import 'package:flutter_app/services/userServices.dart';
+import 'package:flutter_app/views/first_page.dart';
 //import 'package:flutter_app/views/route_list_page.dart';
 import 'package:flutter_app/views/register.dart';
 import 'package:http/http.dart' as http;
@@ -10,14 +9,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_app/models/user.dart';
 //import 'package:flutter_app/views/first_page.dart';
 
-class MyLogin extends StatefulWidget {
-  const MyLogin({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  _MyLoginState createState() => _MyLoginState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _MyLoginState extends State<MyLogin> {
+class _LoginPageState extends State<LoginPage> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   bool buttonEnabled = false;
@@ -39,11 +38,11 @@ class _MyLoginState extends State<MyLogin> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: const Text(
-        "Incorrect credentials",
-        style: TextStyle(color: Colors.red),
+      title: Text(
+        translation(context).inc_credentials,
+        style: TextStyle(color: Colors.red)
       ),
-      content: const Text("User not found or incorrect password."),
+      content:  Text(translation(context).user_not_found),
       actions: [
         okButton,
       ],
@@ -76,7 +75,7 @@ class _MyLoginState extends State<MyLogin> {
             Container(
               padding: EdgeInsets.only(left: 35, top: 130),
               child: Text(
-                'Welcome\nBack',
+                translation(context).welcomeBack,
                 style: TextStyle(color: Colors.black, fontSize: 45),
               ),
             ),
@@ -126,7 +125,7 @@ class _MyLoginState extends State<MyLogin> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Sign in',
+                                translation(context).signin,
                                 style: TextStyle(
                                     fontSize: 27, fontWeight: FontWeight.w700),
                               ),
@@ -151,17 +150,17 @@ class _MyLoginState extends State<MyLogin> {
                                         return;
                                       }
                                       if (res == "200") {
-                                        /* Navigator.of(context).push(
+                                         Navigator.of(context).push(
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                //const FirstPage(),
+                                                const FirstPage(),
                                           ),
-                                        ); */
+                                        ); 
                                       }
                                     }
                                   },
-                                  child: const Text(
-                                    'HERE',
+                                  child: Text(
+                                    translation(context).signin,
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 25),
                                   ),
@@ -178,7 +177,7 @@ class _MyLoginState extends State<MyLogin> {
                                     MaterialPageRoute(builder: (context) => const RegisterPage()));
                                 },
                                 child: Text(
-                                  'Sign Up',
+                                  translation(context).signup,
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                       decoration: TextDecoration.underline,
@@ -190,7 +189,7 @@ class _MyLoginState extends State<MyLogin> {
                               TextButton(
                                 onPressed: () {},
                                 child: Text(
-                                  'Forgot Password',
+                                  translation(context).forgotpass,
                                   style: TextStyle(
                                     decoration: TextDecoration.underline,
                                     color: Color(0xff4c505b),

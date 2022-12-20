@@ -198,7 +198,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                             Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        const MyLogin()));
+                                                        const LoginPage()));
                                           }
                                         }
                                       },

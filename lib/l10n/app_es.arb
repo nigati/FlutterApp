@@ -1,0 +1,13 @@
+{
+    "language": "Español",
+    "inc_credentials": "Credenciales incorrectos",
+    "user_not_found": "Usuario no encontrado o credenciales incorrectos",
+    "settings":"Preferencias",
+    "changeLang":"Cambia el idioma de la aplicación",
+    "welcomeBack":"Bienvenido\nDe\nNuevo",
+    "email":"Correo electrónico",
+    "password": "Contraseña",
+    "signin": "Entrar",
+    "signup": "Registrarse",
+    "forgotpass": "Me olvidé de la contraseña"
+}
