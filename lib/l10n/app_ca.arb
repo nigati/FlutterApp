@@ -7,7 +7,9 @@
     "welcomeBack":"Benvingut\nDe\nNou",
     "email":"Correu electrònic",
     "password": "Contrassenya",
+    "repeatpassword": "Repeteix la contrassenya",
     "signin": "Entrar",
     "signup": "Registrar-se",
-    "forgotpass": "M'he oblidat de la contrassenya"
+    "forgotpass": "M'he oblidat de la contrassenya",
+    "username": "Nom d'Usuari"
 }

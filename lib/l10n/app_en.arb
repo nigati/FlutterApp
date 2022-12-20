@@ -31,6 +31,10 @@
     "@password":{
         "description": "Password"
     },
+    "repeatpassword": "Repeat password",
+    "@password":{
+        "description": "Password"
+    },
     "signin": "Sign in",
     "@signin":{
         "description": "Sign in"
@@ -42,6 +46,10 @@
     "forgotpass": "Forgot password",
     "@forgotpass":{
         "description": "Forgot password"
+    },
+    "username": "Username",
+    "@username":{
+        "description": "username"
     }
     
 }
