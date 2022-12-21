@@ -8,8 +8,8 @@ import 'package:http/http.dart' as http;
 import 'package:localstorage/localstorage.dart';
 
 class UserServices extends ChangeNotifier {
-  User _userData =
-      User(name: "", id: "", password: "", email: "", admin: false);
+  User _userData = User(
+      name: "", id: "", password: "", email: "", birthday: "", admin: false);
 
   User get userData => _userData;
 
@@ -39,7 +39,9 @@ class UserServices extends ChangeNotifier {
     print(msg);
     print(res.body);
     if (res.statusCode == 200) {
-      var token = JWTtoken.fromJson(await jsonDecode(res.body));
+       Map<String, dynamic> responseData = jsonDecode(res.body);
+          _userData = (User.fromJson(responseData['user']));
+      var token = responseData['token'];
       storage.setItem('token', token.toString());
       print(token);
       return "200";
@@ -88,6 +90,17 @@ class UserServices extends ChangeNotifier {
     } else {
       return false;
     }
+  }
+
+  Future<User?> getProfile(User user) async {
+    var client = http.Client();
+    var id = user.id;
+    var uri = Uri.parse('http://localhost:5432/api/users/$id/profile');
+    var response = await client.get(uri);
+    if (response.statusCode == 200) {
+      var json = response.body;
+    }
+    return null;
   }
 }
 

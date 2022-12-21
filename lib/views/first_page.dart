@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/services/routeServices.dart';
-/* import 'package:flutter_app/views/my_profile.dart';
+import 'package:flutter_app/services/userServices.dart';
 import 'package:flutter_app/views/result_routes.dart';
-import 'package:flutter_app/views/route_list_page.dart'; */
+import 'package:flutter_app/views/route_list_page.dart';
+import 'package:provider/provider.dart';
 import 'package:web_date_picker/web_date_picker.dart';
 import '../models/route.dart';
 import '../widgets/drawer.dart';
@@ -31,25 +32,23 @@ class _FirstPage extends State<FirstPage> {
 
   @override
   Widget build(BuildContext context) {
+    RouteServices routeService = Provider.of<RouteServices>(context);
+    UserServices userService = Provider.of<UserServices>(context);
     return Scaffold(
-      drawer: const DrawerScreen(),
+        drawer: const DrawerScreen(),
         appBar: AppBar(
           backgroundColor: Color(0xFF4cbfa6),
-          /* leading: Icon(
+          leading: Icon(
             Icons.time_to_leave,
             color: Color(0xFFF6EBF4),
             size: 50,
-          ), */
+          ),
           actions: <Widget>[
             TextButton(
                 onPressed: () {
-                  /* Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const MyProfile())); */
                 },
                 child: const Text(
-                  'My Profile',
+                  'Exit',
                   style: TextStyle(color: Colors.black, fontSize: 25),
                 ))
           ],
@@ -164,11 +163,6 @@ class _FirstPage extends State<FirstPage> {
                       borderRadius: BorderRadius.circular(20)),
                   child: TextButton(
                     onPressed: () async {
-                      if ((startPointController.text.isNotEmpty) &&
-                          (stopPointController.text.isNotEmpty) &&
-                          (dateInputController.text.isNotEmpty) &&
-                          (time1InputController.text.isNotEmpty) &&
-                          (time2InputController.text.isNotEmpty)) {
                         String startDate = dateInputController.text +
                             'T' +
                             time1InputController.text +
@@ -177,26 +171,28 @@ class _FirstPage extends State<FirstPage> {
                             'T' +
                             time2InputController.text +
                             ':00.000Z';
-                        setState(() {
-                          buttonEnabled = true;
-                        });
 
+                        Routes nR = Routes(
+                            name: "NewRoute",
+                            creator: userService.userData,
+                            participants: [],
+                            startPoint: startPointController.text,
+                            endPoint: stopPointController.text,
+                            stopPoint: [],
+                            dateOfBeggining: DateTime.now());
+                        routeService.newRoute(nR, userService.userData);
                         /* var res = await routeService.getSearchedRoutes(
                             startPointController.text,
                             stopPointController.text,
                             dateInputController.text,
                             startDate,
                             stopDate); */
-                        /* Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => RouteListPage(
-                                startPoint: startPointController.text,
-                                stopPoint: stopPointController.text,
-                                dateStart: startDate,
-                                dateStop: stopDate))); */
-                      }
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const RouteListPage()));
+                      
                     },
                     child: const Text(
-                      'SEARCH',
+                      'CREATE',
                       style: TextStyle(color: Colors.black, fontSize: 25),
                     ),
                   ),

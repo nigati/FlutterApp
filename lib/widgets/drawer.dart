@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
-/* import 'package:flutter_app/views/first_page.dart';
-import 'package:flutter_front/views/profile_page.dart';
-import 'package:flutter_front/views/route_list_page.dart';
-import 'package:flutter_app/views/register.dart';
-import 'package:flutter_app/views/login_page.dart';
-import 'package:flutter_front/views/update_page.dart'; */
-import 'package:flutter_app/models/language.dart';
-import 'package:flutter_app/models/language_constants.dart';
-import 'package:flutter_app/main.dart';
-import 'package:flutter_app/router/route_constants.dart';
+import 'package:flutter_app/views/first_page.dart';
+import 'package:flutter_app/views/myroutes.dart';
+import 'package:flutter_app/views/route_list_page.dart';
 
 
 class DrawerScreen extends StatelessWidget {
@@ -26,35 +19,49 @@ class DrawerScreen extends StatelessWidget {
           const DrawerHeader(
             child: Center(
               child: Text(
-                'Menu',
+                'P A G E S',
                 style: TextStyle(fontSize: 35),
               ),
             ),
           ),
-          /* ListTile(
+          ListTile(
             leading: const Icon(Icons.home),
             title: const Text(
               'Available Routes',
             ),
             onTap: () {
-              /* Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const RouteListPage())); */
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const RouteListPage()));
             },
-          ), */
+          ),
           ListTile(
-            leading: const Icon(
-              Icons.settings,
-              color: Colors.white,
-              size: 30,
-            ),
-            title: Text(
-              translation(context).settings,
+            leading: const Icon(Icons.home),
+            title: const Text(
+              'My Routes',
             ),
             onTap: () {
-              // To close the Drawer
-              Navigator.pop(context);
-              // Navigating to About Page
-              Navigator.pushNamed(context, settingsRoute);
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const MyRoutesPage()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text(
+              'My Bookings',
+            ),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const RouteListPage()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text(
+              'NewRoute',
+            ),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const FirstPage()));
             },
           ),
         ],
