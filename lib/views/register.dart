@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/language_constants.dart';
 import 'package:flutter_app/services/userServices.dart';
 import 'package:flutter_app/views/login_page.dart';
 
@@ -75,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Container(
                   padding: EdgeInsets.only(left: 35, top: 130),
                   child: Text(
-                    'Welcome\nBack',
+                    translation(context).signup,
                     style: TextStyle(color: Colors.black, fontSize: 45),
                   ),
                 ),
@@ -96,7 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 decoration: InputDecoration(
                                     fillColor: Colors.grey.shade100,
                                     filled: true,
-                                    hintText: "Username",
+                                    hintText: translation(context).username,
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     )),
@@ -110,7 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 decoration: InputDecoration(
                                     fillColor: Colors.grey.shade100,
                                     filled: true,
-                                    hintText: "Email",
+                                    hintText: translation(context).email,
                                     errorText:
                                         validateEmail(emailController.text),
                                     border: OutlineInputBorder(
@@ -127,7 +128,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 decoration: InputDecoration(
                                     fillColor: Colors.grey.shade100,
                                     filled: true,
-                                    hintText: "Password",
+                                    hintText: translation(context).password,
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     )),
@@ -142,7 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 decoration: InputDecoration(
                                     fillColor: Colors.grey.shade100,
                                     filled: true,
-                                    hintText: "Repeat password",
+                                    hintText: translation(context).repeatpassword,
                                     errorText: validatePassword(
                                         passwordController.text,
                                         repeatPasswordController.text),
@@ -158,7 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Sign in',
+                                    translation(context).signup,
                                     style: TextStyle(
                                         fontSize: 27,
                                         fontWeight: FontWeight.w700),
@@ -198,12 +199,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                             Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        const MyLogin()));
+                                                        const LoginPage()));
                                           }
                                         }
                                       },
-                                      child: const Text(
-                                        'SIGN UP',
+                                      child:Text(
+                                        translation(context).signup,
                                         style: TextStyle(
                                             color: Colors.black, fontSize: 25),
                                       ),

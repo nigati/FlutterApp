@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
+import 'package:flutter_app/views/route_list_page.dart';
 import 'package:provider/provider.dart';
 import '../services/routeServices.dart';
 
@@ -57,7 +58,7 @@ class _MyHomeState extends State<MyHome> {
                   child: DateTimePicker(
                     controller: dateInputController,
                     type: DateTimePickerType.date,
-                    initialValue: DateTime.now().toString(),
+                    initialValue: null,
                     dateMask: 'd MMM yyyy',
                     firstDate: DateTime(1980),
                     lastDate: DateTime(2100),
@@ -74,8 +75,12 @@ class _MyHomeState extends State<MyHome> {
                   flex: 1,
                   child: TextButton(
                     onPressed: () async {
-                      routeprovder.getSearchedRoutes(startPointController.text,
-                          stopPointController.text, dateInputController.text);
+                      await routeprovder.getSearchedRoutes(
+                          startPointController.text,
+                          stopPointController.text,
+                          dateInputController.text);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const RouteListPage()));
                     },
                     child: Text('Search'),
                   )),

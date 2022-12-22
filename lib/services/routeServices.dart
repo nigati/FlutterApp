@@ -25,6 +25,13 @@ class RouteServices extends ChangeNotifier {
     _routeData = routeData;
   }
 
+  List<Route2> _listRoute = [];
+  List<Route2> get listRoute => _listRoute;
+
+  void setListRouteData(List<Route2> listRoute) {
+    _listRoute = listRoute;
+  }
+
   Future<List<Route2>?> getRoutes() async {
     var client = http.Client();
     var uri = Uri.parse('http://localhost:5432/api/routes');
@@ -45,12 +52,14 @@ class RouteServices extends ChangeNotifier {
     var uri = Uri.parse('http://localhost:5432/api/routes/search');
     var response = await client.post(uri,
         headers: {'content-type': 'application/json'}, body: msg);
+    List<Route2> rec = [];
     if (response.statusCode == 200) {
-      var json = response.body;
-      //print(response.body);
-      return routeFromJson(json);
+      var decodedList = (json.decode(response.body) as List<dynamic>);
+      rec = decodedList.map((i) => Route2.fromJson(i)).toList();
+      return rec;
+    } else {
+      return rec;
     }
-    return null;
   }
 
   Future<String> newParticipant(Route2 nRoute, User part) async {
