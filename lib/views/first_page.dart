@@ -9,7 +9,8 @@ import '../widgets/drawer.dart';
 import 'package:intl/intl.dart';
 
 class FirstPage extends StatefulWidget {
-  const FirstPage({super.key});
+  final String name;
+  const FirstPage({super.key, required this.name});
 
   @override
   State<FirstPage> createState() => _FirstPage();
@@ -32,7 +33,7 @@ class _FirstPage extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const DrawerScreen(),
+        drawer: const DrawerScreen(),
         appBar: AppBar(
           backgroundColor: Color(0xFF4cbfa6),
           /* leading: Icon(

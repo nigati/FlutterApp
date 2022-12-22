@@ -12,6 +12,8 @@ import 'package:flutter_app/models/vehicle.dart';
 List<User> userFromJson(String str) =>
     List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
 
+User userJson(String str) => (json.decode(str).map((x) => User.fromJson(x)));
+
 String userToJson(List<User> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 

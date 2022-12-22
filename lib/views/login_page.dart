@@ -38,11 +38,9 @@ class _LoginPageState extends State<LoginPage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text(
-        translation(context).inc_credentials,
-        style: TextStyle(color: Colors.red)
-      ),
-      content:  Text(translation(context).user_not_found),
+      title: Text(translation(context).inc_credentials,
+          style: TextStyle(color: Colors.red)),
+      content: Text(translation(context).user_not_found),
       actions: [
         okButton,
       ],
@@ -150,12 +148,17 @@ class _LoginPageState extends State<LoginPage> {
                                         return;
                                       }
                                       if (res == "200") {
-                                         Navigator.of(context).push(
+                                        SharedPreferences prefs =
+                                            await SharedPreferences
+                                                .getInstance();
+                                        prefs.setString(
+                                            "name", usernameController.text);
+                                        Navigator.of(context).push(
                                           MaterialPageRoute(
                                             builder: (context) =>
                                                 const FirstPage(),
                                           ),
-                                        ); 
+                                        );
                                       }
                                     }
                                   },
@@ -173,8 +176,9 @@ class _LoginPageState extends State<LoginPage> {
                             children: [
                               TextButton(
                                 onPressed: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (context) => const RegisterPage()));
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          const RegisterPage()));
                                 },
                                 child: Text(
                                   translation(context).signup,

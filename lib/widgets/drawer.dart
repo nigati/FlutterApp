@@ -10,7 +10,6 @@ import 'package:flutter_app/models/language_constants.dart';
 import 'package:flutter_app/main.dart';
 import 'package:flutter_app/router/route_constants.dart';
 
-
 class DrawerScreen extends StatelessWidget {
   const DrawerScreen({Key? key}) : super(key: key);
 
@@ -55,6 +54,20 @@ class DrawerScreen extends StatelessWidget {
               Navigator.pop(context);
               // Navigating to About Page
               Navigator.pushNamed(context, settingsRoute);
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.chat,
+              color: Colors.white,
+              size: 30,
+            ),
+            title: const Text('Chat'),
+            onTap: () {
+              // To close the Drawer
+              Navigator.pop(context);
+              // Navigating to About Page
+              Navigator.pushNamed(context, chatRoute);
             },
           ),
         ],

@@ -11,5 +11,6 @@
     "signin": "Entrar",
     "signup": "Registrar-se",
     "forgotpass": "M'he oblidat de la contrassenya",
-    "username": "Nom d'Usuari"
+    "username": "Nom d'Usuari",
+    "chat":"xat"
 }

@@ -11,5 +11,7 @@
     "signin": "Entrar",
     "signup": "Registrarse",
     "forgotpass": "Me olvidé de la contraseña",
-    "username": "Nombre de usuario"
+    "username": "Nombre de usuario",
+    "chat": "Chat"
+    
 }

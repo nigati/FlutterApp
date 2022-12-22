@@ -15,6 +15,10 @@
     "@settings":{
         "description": "Settings"
     },
+    "chat": "Chat",
+    "@chat":{
+        "description": "Chat"
+    },
     "changeLang": "Change the language",
     "@changeLang":{
         "description": "Change the language of the app"
