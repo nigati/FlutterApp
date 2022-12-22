@@ -9,8 +9,7 @@ import '../widgets/drawer.dart';
 import 'package:intl/intl.dart';
 
 class FirstPage extends StatefulWidget {
-  final String name;
-  const FirstPage({super.key, required this.name});
+  const FirstPage({super.key});
 
   @override
   State<FirstPage> createState() => _FirstPage();
@@ -44,7 +43,7 @@ class _FirstPage extends State<FirstPage> {
           actions: <Widget>[
             TextButton(
                 onPressed: () {
-                  /* Navigator.push(
+                  /*   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const MyProfile())); */

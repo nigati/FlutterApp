@@ -37,15 +37,33 @@ class _ChatPageState extends State<ChatPage> {
       "autoConnect": false,
     });
     socket!.connect();
-    socket!.onConnect((_) {});
+    socket!.onConnect((_) {
+      socket!.on("sendMsgServer", (msg) {
+        listMsg.add(MsgModel(
+            msg: msg["msg"], type: msg["type"], sender: msg["senderNmae"]));
+      });
+    });
   }
 
-  void sendMsg(String msg, String senderName) {
+  void sendMsg(String msg, Function name) {
+    MsgModel ownMsg =
+        MsgModel(msg: msg, type: "ownMsg", sender: loadPreferences());
+    listMsg.add(ownMsg);
     socket!.emit('sendMsg', {
       "type": "ownMsg",
       "msg": msg,
-      "senderName": senderName,
+      "senderName": loadPreferences(),
     });
+  }
+
+  // static SharedPreferences _preferences;
+  // static Future init() async =>
+  //     _preferences = await SharedPreferences.getInstance();
+  // static String getUsername() => _preferences.getString("name");
+  loadPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? name = prefs.getString("name");
+    return name;
   }
 
   @override
@@ -76,11 +94,12 @@ class _ChatPageState extends State<ChatPage> {
                         ),
                       ),
                       suffixIcon: IconButton(
-                        onPressed: () async {
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          name = prefs.getString("name");
-                          sendMsg(_msgController.text, name);
+                        onPressed: () {
+                          String msg = _msgController.text;
+                          if (msg.isNotEmpty) {
+                            sendMsg(msg, loadPreferences());
+                            _msgController.clear();
+                          }
                         },
                         icon: const Icon(
                           Icons.send,
