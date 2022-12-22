@@ -37,6 +37,22 @@ class RouteServices extends ChangeNotifier {
     return null;
   }
 
+  Future<List<Route2>?> getSearchedRoutes(
+      String start, String stop, String dateInit) async {
+    var msg = jsonEncode({"start": start, "stop": stop, "dateInit": dateInit});
+    //print(msg);
+    var client = http.Client();
+    var uri = Uri.parse('http://localhost:5432/api/routes/search');
+    var response = await client.post(uri,
+        headers: {'content-type': 'application/json'}, body: msg);
+    if (response.statusCode == 200) {
+      var json = response.body;
+      //print(response.body);
+      return routeFromJson(json);
+    }
+    return null;
+  }
+
   Future<String> newParticipant(Route2 nRoute, User part) async {
     final Map<String, dynamic> registerData = {
       'id': nRoute.id,
